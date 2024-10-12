@@ -4,8 +4,9 @@ public class Main {
 
     /**
      * Retourne la liste des voisins d'un sommet dans un graphe représenté par une matrice d'adjacence.
+     *
      * @param matriceAdjacence matrice d'adjacence du graphe
-     * @param sommet sommet dont on veut les voisins
+     * @param sommet           sommet dont on veut les voisins
      * @return liste des voisins du sommet
      */
     public static List<Integer> getVoisins(int[][] matriceAdjacence, int sommet) {
@@ -29,6 +30,7 @@ public class Main {
 
     /**
      * Retourne la liste des voisins de chaque sommet dans un graphe représenté par une matrice d'adjacence.
+     *
      * @param matriceAdjacence matrice d'adjacence du graphe
      * @return liste des voisins de chaque sommet
      */
@@ -45,8 +47,9 @@ public class Main {
 
     /**
      * Retourne la liste des voisins d'un sommet donné dans une liste d'adjacence.
+     *
      * @param listeAdjacence liste d'adjacence du graphe
-     * @param sommet sommet dont on veut les voisins
+     * @param sommet         sommet dont on veut les voisins
      * @return liste des voisins du sommet
      */
     public static List<String> getVoisins(Map<String, List<String>> listeAdjacence, String sommet) {
@@ -144,17 +147,30 @@ public class Main {
         Node nodeB = new Node("B");
         Node nodeC = new Node("C");
         Node nodeD = new Node("D");
+        Node nodeE = new Node("E");
 
         graph.addNode(nodeA);
         graph.addNode(nodeB);
         graph.addNode(nodeC);
         graph.addNode(nodeD);
+        graph.addNode(nodeE);
 
         graph.addEdge(nodeA, nodeB);
         graph.addEdge(nodeB, nodeC);
         graph.addEdge(nodeB, nodeD);
         graph.addEdge(nodeC, nodeD);
+        graph.addEdge(nodeD, nodeE);
 
         graph.displayGraph();
+
+        System.out.println(System.lineSeparator() + "===================");
+        System.out.println("Exercice 5 : BFS et DFS");
+        System.out.println("===================" + System.lineSeparator());
+
+        System.out.println("Parcours en largeur (BFS) :");
+        graph.bfs(nodeA);
+
+        System.out.println("Parcours en profondeur (DFS) :");
+        graph.dfs(nodeA);
     }
 }
