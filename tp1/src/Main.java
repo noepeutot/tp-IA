@@ -133,5 +133,28 @@ public class Main {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+
+        System.out.println(System.lineSeparator() + "===================");
+        System.out.println("Exercice 4 : Graphe orienté");
+        System.out.println("===================" + System.lineSeparator());
+
+        Graph graph = new Graph();
+
+        Node nodeA = new Node("A");
+        Node nodeB = new Node("B");
+        Node nodeC = new Node("C");
+        Node nodeD = new Node("D");
+
+        graph.addNode(nodeA);
+        graph.addNode(nodeB);
+        graph.addNode(nodeC);
+        graph.addNode(nodeD);
+
+        graph.addEdge(nodeA, nodeB);
+        graph.addEdge(nodeB, nodeC);
+        graph.addEdge(nodeB, nodeD);
+        graph.addEdge(nodeC, nodeD);
+
+        graph.displayGraph();
     }
 }
