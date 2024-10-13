@@ -15,6 +15,15 @@ public class Graph {
     }
 
     /**
+     * Retourne la liste des sommets du graphe.
+     *
+     * @return liste des sommets du graphe
+     */
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
+    /**
      * Ajoute une arête entre deux sommets.
      *
      * @param from sommet de départ
@@ -87,6 +96,72 @@ public class Graph {
             }
         }
         System.out.println();
+    }
+
+    /**
+     * Recherche un chemin entre deux sommets.
+     *
+     * @param start sommet de départ
+     * @param end   sommet d'arrivée
+     * @return liste des sommets du chemin trouvé
+     */
+    public List<Node> findPath(Node start, Node end) {
+        Set<Node> visited = new HashSet<>();
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
+
+            if (node == end) {
+                return buildPath(node);
+            }
+
+            for (Node neighbor : node.getNeighbors()) {
+                if (!visited.contains(neighbor)) {
+                    neighbor.setParent(node);
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                }
+            }
+        }
+
+        return null; // Pas de chemin trouvé
+    }
+
+    /**
+     * Construit le chemin à partir du sommet final.
+     *
+     * @param node sommet final
+     * @return chemin trouvé
+     */
+    private List<Node> buildPath(Node node) {
+        List<Node> path = new ArrayList<>();
+
+        while (node != null) {
+            path.add(0, node);
+            node = node.getParent();
+        }
+
+        return path;
+    }
+
+    /**
+     * Affiche le chemin trouvé
+     *
+     * @param path chemin trouvé
+     */
+    public void displayPath(List<Node> path) {
+        if (path == null) {
+            System.out.println("Pas de chemin trouvé");
+        } else {
+            for (Node node : path) {
+                System.out.print(node.getId() + " ");
+            }
+            System.out.println();
+        }
     }
 
     /**

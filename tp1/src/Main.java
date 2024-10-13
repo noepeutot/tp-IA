@@ -167,10 +167,76 @@ public class Main {
         System.out.println("Exercice 5 : BFS et DFS");
         System.out.println("===================" + System.lineSeparator());
 
-        System.out.println("Parcours en largeur (BFS) :");
+        System.out.println("Parcours en largeur (BFS) à partir du noeud A :");
         graph.bfs(nodeA);
 
-        System.out.println("Parcours en profondeur (DFS) :");
+        System.out.println("Parcours en profondeur (DFS) à partir du noeud A :");
         graph.dfs(nodeA);
+
+        System.out.println("Parcours en profondeur (DFS) à partir du noeud C :");
+        graph.dfs(nodeC);
+
+        System.out.println("Parcours en profondeur (DFS) à partir du noeud C :");
+        graph.dfs(nodeC);
+
+        System.out.println(System.lineSeparator() + "===================");
+        System.out.println("Exercice 6 : Début et fin chemin + Affichage du chemin");
+        System.out.println("===================" + System.lineSeparator());
+
+        Node start = nodeA;
+        Node end = nodeD;
+
+        System.out.println("Chemin entre " + start.getId() + " et " + end.getId() + " :");
+        List<Node> path = graph.findPath(start, end);
+        graph.displayPath(path);
+
+        start = nodeB;
+        end = nodeA;
+
+        System.out.println(System.lineSeparator() + "Chemin entre " + start.getId() + " et " + end.getId() + " :");
+        path = graph.findPath(start, end);
+        graph.displayPath(path);
+
+        System.out.println(System.lineSeparator() + "===================");
+        System.out.println("Exercice 7 : GrapheGrid");
+        System.out.println("===================" + System.lineSeparator());
+
+        GraphGrid graphGrid = new GraphGrid(5, 5);
+
+        Node nodeF = new Node("F");
+        Node nodeG = new Node("G");
+        Node nodeH = new Node("H");
+        Node nodeI = new Node("I");
+        Node nodeJ = new Node("J");
+
+        graphGrid.addNode(nodeF);
+        graphGrid.addNode(nodeG);
+        graphGrid.addNode(nodeH);
+        graphGrid.addNode(nodeI);
+        graphGrid.addNode(nodeJ);
+
+        graphGrid.addEdge(nodeF, nodeG);
+        graphGrid.addEdge(nodeG, nodeH);
+        graphGrid.addEdge(nodeG, nodeI);
+        graphGrid.addEdge(nodeH, nodeI);
+        graphGrid.addEdge(nodeI, nodeJ);
+
+        // Ajouter des obstacles
+        graphGrid.addWall(1, 1);
+        graphGrid.addWall(2, 2);
+        graphGrid.addWall(3, 3);
+
+        // Afficher la grille
+        System.out.println("Grille avec obstacles :");
+        graphGrid.displayGrid();
+
+        // Afficher les voisins des sommets
+        for (Node node : graphGrid.getNodes()) {
+            System.out.print("Les voisins du sommet " + node.getId() + " sont : ");
+            for (Node neighbor : graphGrid.getNeighbors(node)) {
+                System.out.print(neighbor.getId() + " ");
+            }
+            System.out.println();
+        }
     }
 }
