@@ -9,7 +9,7 @@ Pour utiliser les fichiers, il suffit d'exécuter les commandes suivantes dans u
 ```bash
 javac -d bin src/*.java
 ``` 
-Maintenant que les fichiers java ont été éxécutés, il suffit de lancer le programme avec la commande suivante :
+Maintenant que les fichiers java ont été compilés, il suffit de lancer le programme avec la commande suivante :
 ```bash
 java -cp bin Main
 ```
