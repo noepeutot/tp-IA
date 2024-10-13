@@ -16,7 +16,10 @@ public class GraphGrid extends Graph {
      * Génère une grille de sommets.
      */
     private void generateGrid() {
+        // Crée les sommets de la grille
         Node[][] grid = new Node[this.rows][this.cols];
+
+        // Ajoute chaque sommet à la grille
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
                 String id = "(" + i + "," + j + ")";
@@ -25,6 +28,8 @@ public class GraphGrid extends Graph {
             }
         }
 
+        // Parcourt chaque sommet de la grille
+        // Ajoute une arête entre le sommet et ses voisins (haut, bas, gauche, droite)
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (i > 0) addEdge(grid[i][j], grid[i - 1][j]); // Haut
@@ -41,6 +46,7 @@ public class GraphGrid extends Graph {
      * @param col colonne
      */
     public void addWall(int row, int col) {
+        // Vérifie si les coordonnées sont valides et ajoute un mur au sommet correspondant si c'est le cas
         if (row >= 0 && row < rows && col >= 0 && col < cols) {
             int index = row * cols + col;
             if (index < getNodes().size()) {

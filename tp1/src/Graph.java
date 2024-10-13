@@ -106,12 +106,16 @@ public class Graph {
      * @return liste des sommets du chemin trouvé
      */
     public List<Node> findPath(Node start, Node end) {
+        // Définition des ensembles pour stocker les sommets visités et à visiter
         Set<Node> visited = new HashSet<>();
         Queue<Node> queue = new LinkedList<>();
 
+        // Ajoute le sommet de départ à la file et le marque comme visité
         queue.add(start);
         visited.add(start);
 
+        // Tant que la file n'est pas vide
+        // On retire un sommet de la file, on vérifie s'il s'agit du sommet d'arrivée
         while (!queue.isEmpty()) {
             Node node = queue.poll();
 
@@ -119,6 +123,8 @@ public class Graph {
                 return buildPath(node);
             }
 
+            // Parcourt les voisins du sommet
+            // Si un voisin n'a pas été visité, on l'ajoute à la file et on le marque comme visité
             for (Node neighbor : node.getNeighbors()) {
                 if (!visited.contains(neighbor)) {
                     neighbor.setParent(node);
@@ -140,6 +146,7 @@ public class Graph {
     private List<Node> buildPath(Node node) {
         List<Node> path = new ArrayList<>();
 
+        // Parcourt les parents des sommets jusqu'au sommet de départ
         while (node != null) {
             path.add(0, node);
             node = node.getParent();
